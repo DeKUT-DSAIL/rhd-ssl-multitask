@@ -1,0 +1,11 @@
+
+google-cloud-storage
+matplotlib
+numpy
+pandas
+pillow
+scikit-learn
+scipy
+torch
+torchvision
+umap-learn

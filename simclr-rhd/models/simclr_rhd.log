@@ -1,0 +1,141 @@
+2024-11-03 17:25:46,284 INFO: Logging is configured.
+2024-11-03 17:25:46,286 INFO: Random seed set to 42
+2024-11-03 17:25:46,286 INFO: Environment variables set.
+2024-11-03 17:25:46,557 INFO: Using device: cuda
+2024-11-03 17:25:46,557 INFO: Data transformations defined.
+2024-11-03 17:25:46,558 INFO: Label encoder fitted for view. Classes: ['Apical Four Chamber(A4C)' 'Not Applicable'
+ 'Parasternal long axis (PLAX)' 'Parasternal short axis(PSAX)']
+2024-11-03 17:25:46,558 INFO: Label encoder fitted for condition. Classes: ['Aortic Valve Regurgitation'
+ 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation'
+ 'Mitral Valve Prolapse' 'Mitral Valve Regurgitation' 'Not Applicable'
+ 'Pulmonary Valve Regurgitation' 'Tricuspid Valve Regurgitation']
+2024-11-03 17:25:46,558 INFO: Label encoder fitted for severity. Classes: ['Borderline rhd' 'Definite rhd' 'Not Applicable']
+2024-11-03 17:25:46,822 INFO: Number of unique classes:
+2024-11-03 17:25:46,822 INFO: view: 3
+2024-11-03 17:25:46,822 INFO: View labels: ['Parasternal long axis (PLAX)' 'Parasternal short axis(PSAX)'
+ 'Apical Four Chamber(A4C)']
+2024-11-03 17:25:46,822 INFO: condition: 7
+2024-11-03 17:25:46,823 INFO: Condition labels: ['Not Applicable' 'Aortic Valve Regurgitation' 'Mitral Valve Prolapse'
+ 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation'
+ 'Tricuspid Valve Regurgitation' 'Pulmonary Valve Regurgitation'
+ 'Mitral Valve Regurgitation']
+2024-11-03 17:25:46,823 INFO: severity: 3
+2024-11-03 17:25:46,823 INFO: Severity labels: ['Not Applicable' 'Borderline rhd' 'Definite rhd']
+2024-11-03 17:25:47,019 INFO: Total files in bucket prefix 'supervised/annotated-final': 2640 (All included)
+2024-11-03 17:25:47,336 INFO: Number of unique classes:
+2024-11-03 17:25:47,336 INFO: view: 3
+2024-11-03 17:25:47,336 INFO: View labels: ['Parasternal long axis (PLAX)' 'Parasternal short axis(PSAX)'
+ 'Apical Four Chamber(A4C)']
+2024-11-03 17:25:47,336 INFO: condition: 7
+2024-11-03 17:25:47,337 INFO: Condition labels: ['Not Applicable' 'Aortic Valve Regurgitation' 'Mitral Valve Prolapse'
+ 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation'
+ 'Tricuspid Valve Regurgitation' 'Pulmonary Valve Regurgitation'
+ 'Mitral Valve Regurgitation']
+2024-11-03 17:25:47,337 INFO: severity: 3
+2024-11-03 17:25:47,337 INFO: Severity labels: ['Not Applicable' 'Borderline rhd' 'Definite rhd']
+2024-11-03 17:25:49,788 INFO: Total files in bucket prefix 'unsupervised-videos/unlabelled-frames': 38037 (All included)
+2024-11-03 17:25:49,788 INFO: Datasets created.
+2024-11-03 17:25:49,789 INFO: Dataset split: 1847 train, 396 val, 397 test
+2024-11-03 17:25:49,789 INFO: DataLoaders created.
+2024-11-03 17:25:50,365 INFO: Using 2 GPUs.
+2024-11-03 17:25:50,366 INFO: SimCLR model and optimizer initialized.
+2024-11-03 17:25:50,366 INFO: Starting SimCLR training...
+2024-11-03 17:34:02,186 INFO: Epoch [1/1], Loss: 3.4437
+2024-11-03 17:34:02,352 INFO: Best model saved at epoch 1 with loss 3.4437
+2024-11-03 17:34:02,352 INFO: SimCLR training completed.
+2024-11-03 17:34:02,672 INFO: Training loss plot saved as models/simclr_training_loss.png
+2024-11-03 17:34:02,672 INFO: 
+Training classifier for view
+2024-11-03 17:34:02,673 INFO: Starting training for view classification
+2024-11-03 17:34:02,673 INFO: Label encoder classes: ['Apical Four Chamber(A4C)' 'Not Applicable'
+ 'Parasternal long axis (PLAX)' 'Parasternal short axis(PSAX)']
+2024-11-03 17:34:05,875 INFO: First batch view labels: ['Parasternal long axis (PLAX)', 'Apical Four Chamber(A4C)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal long axis (PLAX)', 'Apical Four Chamber(A4C)', 'Apical Four Chamber(A4C)', 'Parasternal long axis (PLAX)', 'Parasternal long axis (PLAX)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal long axis (PLAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal long axis (PLAX)', 'Parasternal long axis (PLAX)', 'Parasternal long axis (PLAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)']
+2024-11-03 17:34:25,241 INFO: Classifier saved to models/best_classifier_view.pth
+2024-11-03 17:34:25,545 INFO: Training loss plot saved as models/classifier_view_loss.png
+2024-11-03 17:34:25,545 INFO: Evaluating view classification...
+2024-11-03 17:34:31,434 INFO: 
+View Validation Metrics:
+2024-11-03 17:34:31,434 INFO: accuracy: 0.8485
+2024-11-03 17:34:31,434 INFO: precision: 0.8691
+2024-11-03 17:34:31,434 INFO: recall: 0.8485
+2024-11-03 17:34:31,434 INFO: f1: 0.8404
+2024-11-03 17:34:31,434 INFO: specificity: 0.9282
+2024-11-03 17:34:31,435 INFO: Evaluating view classification...
+2024-11-03 17:34:38,219 INFO: 
+View Test Metrics:
+2024-11-03 17:34:38,219 INFO: accuracy: 0.8262
+2024-11-03 17:34:38,219 INFO: precision: 0.8384
+2024-11-03 17:34:38,219 INFO: recall: 0.8262
+2024-11-03 17:34:38,219 INFO: f1: 0.8136
+2024-11-03 17:34:38,219 INFO: specificity: 0.9128
+2024-11-03 17:34:38,219 INFO: Extracting embeddings for view visualization...
+2024-11-03 17:34:43,684 INFO: Generated embeddings shape: (396, 512)
+2024-11-03 17:34:43,696 INFO: Reduced embeddings to 50 components using PCA.
+2024-11-03 17:34:43,696 INFO: Performing t-SNE dimensionality reduction.
+2024-11-03 17:34:46,721 INFO: Embeddings visualization (tsne) saved as models/tsne_view.png
+2024-11-03 17:34:46,721 INFO: Performing UMAP dimensionality reduction.
+2024-11-03 17:34:53,251 INFO: Embeddings visualization (umap) saved as models/umap_view.png
+2024-11-03 17:34:53,251 INFO: 
+Training classifier for condition
+2024-11-03 17:34:53,252 INFO: Starting training for condition classification
+2024-11-03 17:34:53,252 INFO: Label encoder classes: ['Aortic Valve Regurgitation'
+ 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation'
+ 'Mitral Valve Prolapse' 'Mitral Valve Regurgitation' 'Not Applicable'
+ 'Pulmonary Valve Regurgitation' 'Tricuspid Valve Regurgitation']
+2024-11-03 17:34:56,363 INFO: First batch condition labels: ['Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Mitral Valve Prolapse', 'Not Applicable', 'Aortic Valve Regurgitation', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Pulmonary Valve Regurgitation', 'Mitral Valve Prolapse', 'Tricuspid Valve Regurgitation', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Tricuspid Valve Regurgitation', 'Mitral Valve Prolapse', 'Not Applicable', 'Not Applicable', 'Mitral Valve Regurgitation', 'Not Applicable', 'Not Applicable', 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation', 'Mitral Valve Regurgitation', 'Not Applicable', 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation', 'Not Applicable', 'Not Applicable', 'Not Applicable']
+2024-11-03 17:35:15,143 INFO: Classifier saved to models/best_classifier_condition.pth
+2024-11-03 17:35:15,438 INFO: Training loss plot saved as models/classifier_condition_loss.png
+2024-11-03 17:35:15,439 INFO: Evaluating condition classification...
+2024-11-03 17:35:21,110 INFO: 
+Condition Validation Metrics:
+2024-11-03 17:35:21,110 INFO: accuracy: 0.8030
+2024-11-03 17:35:21,110 INFO: precision: 0.7385
+2024-11-03 17:35:21,110 INFO: recall: 0.8030
+2024-11-03 17:35:21,110 INFO: f1: 0.7536
+2024-11-03 17:35:21,110 INFO: specificity: 0.9046
+2024-11-03 17:35:21,111 INFO: Evaluating condition classification...
+2024-11-03 17:35:27,121 INFO: 
+Condition Test Metrics:
+2024-11-03 17:35:27,121 INFO: accuracy: 0.7330
+2024-11-03 17:35:27,121 INFO: precision: 0.6222
+2024-11-03 17:35:27,121 INFO: recall: 0.7330
+2024-11-03 17:35:27,121 INFO: f1: 0.6684
+2024-11-03 17:35:27,121 INFO: specificity: 0.9022
+2024-11-03 17:35:27,122 INFO: Extracting embeddings for condition visualization...
+2024-11-03 17:35:32,749 INFO: Generated embeddings shape: (396, 512)
+2024-11-03 17:35:32,760 INFO: Reduced embeddings to 50 components using PCA.
+2024-11-03 17:35:32,760 INFO: Performing t-SNE dimensionality reduction.
+2024-11-03 17:35:35,829 INFO: Embeddings visualization (tsne) saved as models/tsne_condition.png
+2024-11-03 17:35:35,829 INFO: Performing UMAP dimensionality reduction.
+2024-11-03 17:35:38,275 INFO: Embeddings visualization (umap) saved as models/umap_condition.png
+2024-11-03 17:35:38,275 INFO: 
+Training classifier for severity
+2024-11-03 17:35:38,276 INFO: Starting training for severity classification
+2024-11-03 17:35:38,276 INFO: Label encoder classes: ['Borderline rhd' 'Definite rhd' 'Not Applicable']
+2024-11-03 17:35:41,448 INFO: First batch severity labels: ['Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Borderline rhd', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Definite rhd', 'Not Applicable', 'Not Applicable', 'Borderline rhd', 'Borderline rhd', 'Not Applicable', 'Definite rhd', 'Not Applicable', 'Not Applicable']
+2024-11-03 17:36:00,087 INFO: Classifier saved to models/best_classifier_severity.pth
+2024-11-03 17:36:00,397 INFO: Training loss plot saved as models/classifier_severity_loss.png
+2024-11-03 17:36:00,397 INFO: Evaluating severity classification...
+2024-11-03 17:36:06,095 INFO: 
+Severity Validation Metrics:
+2024-11-03 17:36:06,095 INFO: accuracy: 0.9293
+2024-11-03 17:36:06,095 INFO: precision: 0.9261
+2024-11-03 17:36:06,095 INFO: recall: 0.9293
+2024-11-03 17:36:06,095 INFO: f1: 0.9269
+2024-11-03 17:36:06,095 INFO: specificity: 0.9142
+2024-11-03 17:36:06,096 INFO: Evaluating severity classification...
+2024-11-03 17:36:12,145 INFO: 
+Severity Test Metrics:
+2024-11-03 17:36:12,145 INFO: accuracy: 0.9521
+2024-11-03 17:36:12,146 INFO: precision: 0.9538
+2024-11-03 17:36:12,146 INFO: recall: 0.9521
+2024-11-03 17:36:12,146 INFO: f1: 0.9497
+2024-11-03 17:36:12,146 INFO: specificity: 0.9353
+2024-11-03 17:36:12,146 INFO: Extracting embeddings for severity visualization...
+2024-11-03 17:36:17,716 INFO: Generated embeddings shape: (396, 512)
+2024-11-03 17:36:17,729 INFO: Reduced embeddings to 50 components using PCA.
+2024-11-03 17:36:17,729 INFO: Performing t-SNE dimensionality reduction.
+2024-11-03 17:36:20,723 INFO: Embeddings visualization (tsne) saved as models/tsne_severity.png
+2024-11-03 17:36:20,723 INFO: Performing UMAP dimensionality reduction.
+2024-11-03 17:36:22,750 INFO: Embeddings visualization (umap) saved as models/umap_severity.png
+2024-11-03 17:36:22,750 INFO: All tasks completed successfully.
