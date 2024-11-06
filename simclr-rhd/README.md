@@ -48,3 +48,9 @@ This will run the script in the background and save the output to `simclr_rhd.tx
 ## Results
 
 The results will be stored in the specified output directory as configured in the script.
+
+![alt text](models/simclr_training_loss.png)
+
+
+
+![alt text](models/umap_view.png)![alt text](models/umap_condition.png)![alt text](models/umap_severity.png)

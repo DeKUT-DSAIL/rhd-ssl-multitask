@@ -1,1 +1,4 @@
 /simclr-rhd/*.json
+/dinov2-rhd/*.json
+/dinov2-rhd/outputs/run_20241105_162913/*.ipynb_checkpoints
+/simclr-rhd/models/*.ipynb_checkpoints

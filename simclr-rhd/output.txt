@@ -1,0 +1,313 @@
+nohup: ignoring input
+2024-11-04 09:37:40,464 INFO: Logging is configured.
+2024-11-04 09:37:40,472 INFO: Random seed set to 42
+2024-11-04 09:37:40,472 INFO: Environment variables set.
+2024-11-04 09:37:40,680 INFO: Using device: cuda
+2024-11-04 09:37:40,681 INFO: Data transformations defined.
+2024-11-04 09:37:40,681 INFO: Label encoder fitted for view. Classes: ['Apical Four Chamber(A4C)' 'Not Applicable'
+ 'Parasternal long axis (PLAX)' 'Parasternal short axis(PSAX)']
+2024-11-04 09:37:40,681 INFO: Label encoder fitted for condition. Classes: ['Aortic Valve Regurgitation'
+ 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation'
+ 'Mitral Valve Prolapse' 'Mitral Valve Regurgitation' 'Not Applicable'
+ 'Pulmonary Valve Regurgitation' 'Tricuspid Valve Regurgitation']
+2024-11-04 09:37:40,681 INFO: Label encoder fitted for severity. Classes: ['Borderline rhd' 'Definite rhd' 'Not Applicable']
+2024-11-04 09:37:41,019 INFO: Number of unique classes:
+2024-11-04 09:37:41,019 INFO: view: 3
+2024-11-04 09:37:41,019 INFO: View labels: ['Parasternal long axis (PLAX)' 'Parasternal short axis(PSAX)'
+ 'Apical Four Chamber(A4C)']
+2024-11-04 09:37:41,019 INFO: condition: 7
+2024-11-04 09:37:41,020 INFO: Condition labels: ['Not Applicable' 'Aortic Valve Regurgitation' 'Mitral Valve Prolapse'
+ 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation'
+ 'Tricuspid Valve Regurgitation' 'Pulmonary Valve Regurgitation'
+ 'Mitral Valve Regurgitation']
+2024-11-04 09:37:41,020 INFO: severity: 3
+2024-11-04 09:37:41,020 INFO: Severity labels: ['Not Applicable' 'Borderline rhd' 'Definite rhd']
+2024-11-04 09:37:41,222 INFO: Total files in bucket prefix 'supervised/annotated-final': 2640 (All included)
+2024-11-04 09:37:41,502 INFO: Number of unique classes:
+2024-11-04 09:37:41,502 INFO: view: 3
+2024-11-04 09:37:41,502 INFO: View labels: ['Parasternal long axis (PLAX)' 'Parasternal short axis(PSAX)'
+ 'Apical Four Chamber(A4C)']
+2024-11-04 09:37:41,502 INFO: condition: 7
+2024-11-04 09:37:41,503 INFO: Condition labels: ['Not Applicable' 'Aortic Valve Regurgitation' 'Mitral Valve Prolapse'
+ 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation'
+ 'Tricuspid Valve Regurgitation' 'Pulmonary Valve Regurgitation'
+ 'Mitral Valve Regurgitation']
+2024-11-04 09:37:41,503 INFO: severity: 3
+2024-11-04 09:37:41,503 INFO: Severity labels: ['Not Applicable' 'Borderline rhd' 'Definite rhd']
+2024-11-04 09:37:43,992 INFO: Total files in bucket prefix 'unsupervised-videos/unlabelled-frames': 38037 (All included)
+2024-11-04 09:37:43,992 INFO: Datasets created.
+2024-11-04 09:37:44,014 INFO: Dataset split: 1847 train, 396 val, 397 test
+2024-11-04 09:37:44,014 INFO: DataLoaders created.
+2024-11-04 09:37:44,856 INFO: Using 2 GPUs.
+2024-11-04 09:37:44,856 INFO: SimCLR model and optimizer initialized.
+2024-11-04 09:37:44,857 INFO: Starting SimCLR training...
+2024-11-04 09:47:57,423 INFO: Epoch [1/300], Loss: 3.4463
+2024-11-04 09:47:57,591 INFO: Best model saved at epoch 1 with loss 3.4463
+2024-11-04 09:57:00,923 INFO: Epoch [2/300], Loss: 3.3134
+2024-11-04 09:57:01,103 INFO: Best model saved at epoch 2 with loss 3.3134
+2024-11-04 10:05:34,958 INFO: Epoch [3/300], Loss: 3.2776
+2024-11-04 10:05:35,145 INFO: Best model saved at epoch 3 with loss 3.2776
+2024-11-04 10:13:43,844 INFO: Epoch [4/300], Loss: 3.2578
+2024-11-04 10:13:44,023 INFO: Best model saved at epoch 4 with loss 3.2578
+2024-11-04 10:21:36,010 INFO: Epoch [5/300], Loss: 3.2438
+2024-11-04 10:21:36,191 INFO: Best model saved at epoch 5 with loss 3.2438
+2024-11-04 10:29:25,353 INFO: Epoch [6/300], Loss: 3.2392
+2024-11-04 10:29:25,535 INFO: Best model saved at epoch 6 with loss 3.2392
+2024-11-04 10:37:15,421 INFO: Epoch [7/300], Loss: 3.2285
+2024-11-04 10:37:15,599 INFO: Best model saved at epoch 7 with loss 3.2285
+2024-11-04 10:45:08,905 INFO: Epoch [8/300], Loss: 3.2196
+2024-11-04 10:45:09,087 INFO: Best model saved at epoch 8 with loss 3.2196
+2024-11-04 10:53:08,455 INFO: Epoch [9/300], Loss: 3.2148
+2024-11-04 10:53:08,631 INFO: Best model saved at epoch 9 with loss 3.2148
+2024-11-04 11:01:07,698 INFO: Epoch [10/300], Loss: 3.2012
+2024-11-04 11:01:07,879 INFO: Best model saved at epoch 10 with loss 3.2012
+2024-11-04 11:09:13,123 INFO: Epoch [11/300], Loss: 3.2018
+2024-11-04 11:09:13,123 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 11:17:13,545 INFO: Epoch [12/300], Loss: 3.1925
+2024-11-04 11:17:13,727 INFO: Best model saved at epoch 12 with loss 3.1925
+2024-11-04 11:25:18,861 INFO: Epoch [13/300], Loss: 3.1906
+2024-11-04 11:25:19,039 INFO: Best model saved at epoch 13 with loss 3.1906
+2024-11-04 11:33:36,737 INFO: Epoch [14/300], Loss: 3.1860
+2024-11-04 11:33:36,920 INFO: Best model saved at epoch 14 with loss 3.1860
+2024-11-04 11:41:51,328 INFO: Epoch [15/300], Loss: 3.1815
+2024-11-04 11:41:51,511 INFO: Best model saved at epoch 15 with loss 3.1815
+2024-11-04 11:49:56,196 INFO: Epoch [16/300], Loss: 3.1852
+2024-11-04 11:49:56,196 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 11:57:58,489 INFO: Epoch [17/300], Loss: 3.1769
+2024-11-04 11:57:58,672 INFO: Best model saved at epoch 17 with loss 3.1769
+2024-11-04 12:06:03,401 INFO: Epoch [18/300], Loss: 3.1742
+2024-11-04 12:06:03,593 INFO: Best model saved at epoch 18 with loss 3.1742
+2024-11-04 12:14:00,177 INFO: Epoch [19/300], Loss: 3.1671
+2024-11-04 12:14:00,359 INFO: Best model saved at epoch 19 with loss 3.1671
+2024-11-04 12:22:00,121 INFO: Epoch [20/300], Loss: 3.1666
+2024-11-04 12:22:00,303 INFO: Best model saved at epoch 20 with loss 3.1666
+2024-11-04 12:29:56,115 INFO: Epoch [21/300], Loss: 3.1630
+2024-11-04 12:29:56,295 INFO: Best model saved at epoch 21 with loss 3.1630
+2024-11-04 12:38:02,050 INFO: Epoch [22/300], Loss: 3.1624
+2024-11-04 12:38:02,231 INFO: Best model saved at epoch 22 with loss 3.1624
+2024-11-04 12:45:56,875 INFO: Epoch [23/300], Loss: 3.1611
+2024-11-04 12:45:57,055 INFO: Best model saved at epoch 23 with loss 3.1611
+2024-11-04 12:53:54,154 INFO: Epoch [24/300], Loss: 3.1553
+2024-11-04 12:53:54,335 INFO: Best model saved at epoch 24 with loss 3.1553
+2024-11-04 13:01:53,107 INFO: Epoch [25/300], Loss: 3.1533
+2024-11-04 13:01:53,287 INFO: Best model saved at epoch 25 with loss 3.1533
+2024-11-04 13:09:58,275 INFO: Epoch [26/300], Loss: 3.1512
+2024-11-04 13:09:58,455 INFO: Best model saved at epoch 26 with loss 3.1512
+2024-11-04 13:17:56,387 INFO: Epoch [27/300], Loss: 3.1477
+2024-11-04 13:17:56,567 INFO: Best model saved at epoch 27 with loss 3.1477
+2024-11-04 13:25:50,329 INFO: Epoch [28/300], Loss: 3.1482
+2024-11-04 13:25:50,329 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 13:33:46,274 INFO: Epoch [29/300], Loss: 3.1442
+2024-11-04 13:33:46,455 INFO: Best model saved at epoch 29 with loss 3.1442
+2024-11-04 13:41:48,573 INFO: Epoch [30/300], Loss: 3.1426
+2024-11-04 13:41:48,751 INFO: Best model saved at epoch 30 with loss 3.1426
+2024-11-04 13:49:46,096 INFO: Epoch [31/300], Loss: 3.1426
+2024-11-04 13:49:46,282 INFO: Best model saved at epoch 31 with loss 3.1426
+2024-11-04 13:57:35,200 INFO: Epoch [32/300], Loss: 3.1385
+2024-11-04 13:57:35,383 INFO: Best model saved at epoch 32 with loss 3.1385
+2024-11-04 14:05:27,144 INFO: Epoch [33/300], Loss: 3.1376
+2024-11-04 14:05:27,329 INFO: Best model saved at epoch 33 with loss 3.1376
+2024-11-04 14:13:30,830 INFO: Epoch [34/300], Loss: 3.1393
+2024-11-04 14:13:30,831 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 14:21:39,028 INFO: Epoch [35/300], Loss: 3.1327
+2024-11-04 14:21:39,207 INFO: Best model saved at epoch 35 with loss 3.1327
+2024-11-04 14:29:45,686 INFO: Epoch [36/300], Loss: 3.1341
+2024-11-04 14:29:45,686 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 14:37:49,076 INFO: Epoch [37/300], Loss: 3.1336
+2024-11-04 14:37:49,076 INFO: No improvement in loss for 2 epoch(s).
+2024-11-04 14:45:48,675 INFO: Epoch [38/300], Loss: 3.1310
+2024-11-04 14:45:48,816 INFO: Best model saved at epoch 38 with loss 3.1310
+2024-11-04 14:53:54,240 INFO: Epoch [39/300], Loss: 3.1239
+2024-11-04 14:53:54,415 INFO: Best model saved at epoch 39 with loss 3.1239
+2024-11-04 15:02:12,849 INFO: Epoch [40/300], Loss: 3.1273
+2024-11-04 15:02:12,849 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 15:10:55,417 INFO: Epoch [41/300], Loss: 3.1258
+2024-11-04 15:10:55,417 INFO: No improvement in loss for 2 epoch(s).
+2024-11-04 15:20:16,996 INFO: Epoch [42/300], Loss: 3.1246
+2024-11-04 15:20:16,996 INFO: No improvement in loss for 3 epoch(s).
+2024-11-04 15:28:41,676 INFO: Epoch [43/300], Loss: 3.1229
+2024-11-04 15:28:41,855 INFO: Best model saved at epoch 43 with loss 3.1229
+2024-11-04 15:36:56,141 INFO: Epoch [44/300], Loss: 3.1233
+2024-11-04 15:36:56,142 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 15:45:06,135 INFO: Epoch [45/300], Loss: 3.1191
+2024-11-04 15:45:06,321 INFO: Best model saved at epoch 45 with loss 3.1191
+2024-11-04 15:53:16,827 INFO: Epoch [46/300], Loss: 3.1226
+2024-11-04 15:53:16,828 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 16:01:19,541 INFO: Epoch [47/300], Loss: 3.1224
+2024-11-04 16:01:19,541 INFO: No improvement in loss for 2 epoch(s).
+2024-11-04 16:09:25,318 INFO: Epoch [48/300], Loss: 3.1211
+2024-11-04 16:09:25,318 INFO: No improvement in loss for 3 epoch(s).
+2024-11-04 16:17:33,416 INFO: Epoch [49/300], Loss: 3.1235
+2024-11-04 16:17:33,416 INFO: No improvement in loss for 4 epoch(s).
+2024-11-04 16:25:36,356 INFO: Epoch [50/300], Loss: 3.1184
+2024-11-04 16:25:36,535 INFO: Best model saved at epoch 50 with loss 3.1184
+2024-11-04 16:33:39,957 INFO: Epoch [51/300], Loss: 3.1172
+2024-11-04 16:33:40,135 INFO: Best model saved at epoch 51 with loss 3.1172
+2024-11-04 16:41:42,183 INFO: Epoch [52/300], Loss: 3.1136
+2024-11-04 16:41:42,369 INFO: Best model saved at epoch 52 with loss 3.1136
+2024-11-04 16:49:47,774 INFO: Epoch [53/300], Loss: 3.1175
+2024-11-04 16:49:47,775 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 16:58:01,494 INFO: Epoch [54/300], Loss: 3.1130
+2024-11-04 16:58:01,683 INFO: Best model saved at epoch 54 with loss 3.1130
+2024-11-04 17:06:13,207 INFO: Epoch [55/300], Loss: 3.1126
+2024-11-04 17:06:13,383 INFO: Best model saved at epoch 55 with loss 3.1126
+2024-11-04 17:14:25,543 INFO: Epoch [56/300], Loss: 3.1128
+2024-11-04 17:14:25,544 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 17:22:34,425 INFO: Epoch [57/300], Loss: 3.1121
+2024-11-04 17:22:34,615 INFO: Best model saved at epoch 57 with loss 3.1121
+2024-11-04 17:30:43,985 INFO: Epoch [58/300], Loss: 3.1071
+2024-11-04 17:30:44,166 INFO: Best model saved at epoch 58 with loss 3.1071
+2024-11-04 17:38:51,324 INFO: Epoch [59/300], Loss: 3.1106
+2024-11-04 17:38:51,324 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 17:46:58,039 INFO: Epoch [60/300], Loss: 3.1107
+2024-11-04 17:46:58,040 INFO: No improvement in loss for 2 epoch(s).
+2024-11-04 17:55:05,066 INFO: Epoch [61/300], Loss: 3.1082
+2024-11-04 17:55:05,066 INFO: No improvement in loss for 3 epoch(s).
+2024-11-04 18:03:10,064 INFO: Epoch [62/300], Loss: 3.1057
+2024-11-04 18:03:10,246 INFO: Best model saved at epoch 62 with loss 3.1057
+2024-11-04 18:11:17,372 INFO: Epoch [63/300], Loss: 3.1060
+2024-11-04 18:11:17,372 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 18:19:21,467 INFO: Epoch [64/300], Loss: 3.1067
+2024-11-04 18:19:21,468 INFO: No improvement in loss for 2 epoch(s).
+2024-11-04 18:27:27,529 INFO: Epoch [65/300], Loss: 3.1059
+2024-11-04 18:27:27,530 INFO: No improvement in loss for 3 epoch(s).
+2024-11-04 18:35:33,019 INFO: Epoch [66/300], Loss: 3.1076
+2024-11-04 18:35:33,019 INFO: No improvement in loss for 4 epoch(s).
+2024-11-04 18:43:37,085 INFO: Epoch [67/300], Loss: 3.1021
+2024-11-04 18:43:37,273 INFO: Best model saved at epoch 67 with loss 3.1021
+2024-11-04 18:51:43,736 INFO: Epoch [68/300], Loss: 3.1046
+2024-11-04 18:51:43,736 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 18:59:49,963 INFO: Epoch [69/300], Loss: 3.0979
+2024-11-04 18:59:50,143 INFO: Best model saved at epoch 69 with loss 3.0979
+2024-11-04 19:08:05,079 INFO: Epoch [70/300], Loss: 3.1034
+2024-11-04 19:08:05,079 INFO: No improvement in loss for 1 epoch(s).
+2024-11-04 19:16:16,234 INFO: Epoch [71/300], Loss: 3.1022
+2024-11-04 19:16:16,234 INFO: No improvement in loss for 2 epoch(s).
+2024-11-04 19:24:29,814 INFO: Epoch [72/300], Loss: 3.1013
+2024-11-04 19:24:29,814 INFO: No improvement in loss for 3 epoch(s).
+2024-11-04 19:32:57,052 INFO: Epoch [73/300], Loss: 3.1011
+2024-11-04 19:32:57,052 INFO: No improvement in loss for 4 epoch(s).
+2024-11-04 19:41:35,336 INFO: Epoch [74/300], Loss: 3.1050
+2024-11-04 19:41:35,336 INFO: No improvement in loss for 5 epoch(s).
+2024-11-04 19:41:35,336 INFO: Early stopping triggered after epoch 74
+2024-11-04 19:41:35,337 INFO: SimCLR training completed.
+2024-11-04 19:41:35,783 INFO: Training loss plot saved as models/simclr_training_loss.png
+2024-11-04 19:41:35,783 INFO: 
+Training classifier for view
+2024-11-04 19:41:35,784 INFO: Starting training for view classification
+2024-11-04 19:41:35,784 INFO: Label encoder classes: ['Apical Four Chamber(A4C)' 'Not Applicable'
+ 'Parasternal long axis (PLAX)' 'Parasternal short axis(PSAX)']
+2024-11-04 19:41:40,048 INFO: First batch view labels: ['Parasternal short axis(PSAX)', 'Parasternal long axis (PLAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal short axis(PSAX)', 'Parasternal long axis (PLAX)', 'Apical Four Chamber(A4C)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal long axis (PLAX)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal long axis (PLAX)', 'Apical Four Chamber(A4C)', 'Parasternal long axis (PLAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal long axis (PLAX)', 'Parasternal long axis (PLAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Parasternal short axis(PSAX)', 'Apical Four Chamber(A4C)', 'Parasternal long axis (PLAX)']
+2024-11-04 19:45:43,111 INFO: Epoch [10/60], Loss: 0.0353
+2024-11-04 19:49:20,115 INFO: Epoch [20/60], Loss: 0.0174
+2024-11-04 19:52:54,461 INFO: Epoch [30/60], Loss: 0.0105
+2024-11-04 19:56:28,800 INFO: Epoch [40/60], Loss: 0.0078
+2024-11-04 20:00:05,825 INFO: Epoch [50/60], Loss: 0.0063
+2024-11-04 20:03:44,712 INFO: Epoch [60/60], Loss: 0.0051
+2024-11-04 20:03:44,713 INFO: Classifier saved to models/best_classifier_view.pth
+2024-11-04 20:03:45,100 INFO: Training loss plot saved as models/classifier_view_loss.png
+2024-11-04 20:03:45,101 INFO: Evaluating view classification...
+2024-11-04 20:03:53,470 INFO: 
+View Validation Metrics:
+2024-11-04 20:03:53,470 INFO: accuracy: 0.9141
+2024-11-04 20:03:53,470 INFO: precision: 0.9190
+2024-11-04 20:03:53,470 INFO: recall: 0.9141
+2024-11-04 20:03:53,470 INFO: f1: 0.9133
+2024-11-04 20:03:53,470 INFO: specificity: 0.9604
+2024-11-04 20:03:53,471 INFO: Evaluating view classification...
+2024-11-04 20:04:01,845 INFO: 
+View Test Metrics:
+2024-11-04 20:04:01,845 INFO: accuracy: 0.9043
+2024-11-04 20:04:01,845 INFO: precision: 0.9071
+2024-11-04 20:04:01,845 INFO: recall: 0.9043
+2024-11-04 20:04:01,845 INFO: f1: 0.9034
+2024-11-04 20:04:01,845 INFO: specificity: 0.9536
+2024-11-04 20:04:01,846 INFO: Extracting embeddings for view visualization...
+2024-11-04 20:04:08,974 INFO: Generated embeddings shape: (396, 512)
+2024-11-04 20:04:09,044 INFO: Reduced embeddings to 50 components using PCA.
+2024-11-04 20:04:09,044 INFO: Performing t-SNE dimensionality reduction.
+2024-11-04 20:04:12,305 INFO: Embeddings visualization (tsne) saved as models/tsne_view.png
+2024-11-04 20:04:12,305 INFO: Performing UMAP dimensionality reduction.
+/home/lornamugambik/anaconda3/envs/venv/lib/python3.12/site-packages/umap/umap_.py:1945: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(f"n_jobs value {self.n_jobs} overridden to 1 by setting random_state. Use no seed for parallelism.")
+2024-11-04 20:04:19,039 INFO: Embeddings visualization (umap) saved as models/umap_view.png
+2024-11-04 20:04:19,039 INFO: 
+Training classifier for condition
+2024-11-04 20:04:19,040 INFO: Starting training for condition classification
+2024-11-04 20:04:19,040 INFO: Label encoder classes: ['Aortic Valve Regurgitation'
+ 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation'
+ 'Mitral Valve Prolapse' 'Mitral Valve Regurgitation' 'Not Applicable'
+ 'Pulmonary Valve Regurgitation' 'Tricuspid Valve Regurgitation']
+2024-11-04 20:04:22,151 INFO: First batch condition labels: ['Not Applicable', 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation', 'Not Applicable', 'Mitral Valve Prolapse', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Tricuspid Valve Regurgitation', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Aortic Valve Regurgitation', 'Mitral Valve Prolapse', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Pulmonary Valve Regurgitation', 'Aortic Valve Regurgitation', 'Pulmonary Valve Regurgitation', 'Tricuspid Valve Regurgitation', 'Not Applicable', 'Aortic Valve Regurgitation, Pulmonary Valve Regurgitation', 'Mitral Valve Regurgitation', 'Not Applicable', 'Not Applicable']
+2024-11-04 20:07:59,657 INFO: Epoch [10/60], Loss: 0.0636
+2024-11-04 20:11:42,178 INFO: Epoch [20/60], Loss: 0.0279
+2024-11-04 20:15:24,365 INFO: Epoch [30/60], Loss: 0.0178
+2024-11-04 20:19:06,157 INFO: Epoch [40/60], Loss: 0.0132
+2024-11-04 20:22:47,885 INFO: Epoch [50/60], Loss: 0.0095
+2024-11-04 20:26:26,148 INFO: Epoch [60/60], Loss: 0.0079
+2024-11-04 20:26:26,150 INFO: Classifier saved to models/best_classifier_condition.pth
+2024-11-04 20:26:26,521 INFO: Training loss plot saved as models/classifier_condition_loss.png
+2024-11-04 20:26:26,521 INFO: Evaluating condition classification...
+2024-11-04 20:26:33,257 INFO: 
+Condition Validation Metrics:
+2024-11-04 20:26:33,257 INFO: accuracy: 0.8510
+2024-11-04 20:26:33,257 INFO: precision: 0.8553
+2024-11-04 20:26:33,257 INFO: recall: 0.8510
+2024-11-04 20:26:33,257 INFO: f1: 0.8508
+2024-11-04 20:26:33,257 INFO: specificity: 0.9475
+2024-11-04 20:26:33,257 INFO: Evaluating condition classification...
+2024-11-04 20:26:40,966 INFO: 
+Condition Test Metrics:
+2024-11-04 20:26:40,966 INFO: accuracy: 0.8514
+2024-11-04 20:26:40,966 INFO: precision: 0.8508
+2024-11-04 20:26:40,966 INFO: recall: 0.8514
+2024-11-04 20:26:40,966 INFO: f1: 0.8447
+2024-11-04 20:26:40,966 INFO: specificity: 0.9484
+2024-11-04 20:26:40,967 INFO: Extracting embeddings for condition visualization...
+2024-11-04 20:26:47,427 INFO: Generated embeddings shape: (396, 512)
+2024-11-04 20:26:47,439 INFO: Reduced embeddings to 50 components using PCA.
+2024-11-04 20:26:47,440 INFO: Performing t-SNE dimensionality reduction.
+2024-11-04 20:26:50,664 INFO: Embeddings visualization (tsne) saved as models/tsne_condition.png
+2024-11-04 20:26:50,664 INFO: Performing UMAP dimensionality reduction.
+/home/lornamugambik/anaconda3/envs/venv/lib/python3.12/site-packages/umap/umap_.py:1945: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(f"n_jobs value {self.n_jobs} overridden to 1 by setting random_state. Use no seed for parallelism.")
+2024-11-04 20:26:53,173 INFO: Embeddings visualization (umap) saved as models/umap_condition.png
+2024-11-04 20:26:53,173 INFO: 
+Training classifier for severity
+2024-11-04 20:26:53,174 INFO: Starting training for severity classification
+2024-11-04 20:26:53,174 INFO: Label encoder classes: ['Borderline rhd' 'Definite rhd' 'Not Applicable']
+2024-11-04 20:26:56,194 INFO: First batch severity labels: ['Not Applicable', 'Not Applicable', 'Not Applicable', 'Definite rhd', 'Definite rhd', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Definite rhd', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Definite rhd', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Borderline rhd', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Not Applicable', 'Definite rhd', 'Borderline rhd']
+2024-11-04 20:30:31,835 INFO: Epoch [10/60], Loss: 0.0155
+2024-11-04 20:34:13,274 INFO: Epoch [20/60], Loss: 0.0066
+2024-11-04 20:37:50,623 INFO: Epoch [30/60], Loss: 0.0046
+2024-11-04 20:41:32,006 INFO: Epoch [40/60], Loss: 0.0032
+2024-11-04 20:45:12,573 INFO: Epoch [50/60], Loss: 0.0025
+2024-11-04 20:48:51,446 INFO: Epoch [60/60], Loss: 0.0020
+2024-11-04 20:48:51,447 INFO: Classifier saved to models/best_classifier_severity.pth
+2024-11-04 20:48:51,821 INFO: Training loss plot saved as models/classifier_severity_loss.png
+2024-11-04 20:48:51,821 INFO: Evaluating severity classification...
+2024-11-04 20:48:58,267 INFO: 
+Severity Validation Metrics:
+2024-11-04 20:48:58,267 INFO: accuracy: 0.9672
+2024-11-04 20:48:58,267 INFO: precision: 0.9670
+2024-11-04 20:48:58,267 INFO: recall: 0.9672
+2024-11-04 20:48:58,268 INFO: f1: 0.9666
+2024-11-04 20:48:58,268 INFO: specificity: 0.9528
+2024-11-04 20:48:58,268 INFO: Evaluating severity classification...
+2024-11-04 20:49:04,860 INFO: 
+Severity Test Metrics:
+2024-11-04 20:49:04,860 INFO: accuracy: 0.9496
+2024-11-04 20:49:04,861 INFO: precision: 0.9488
+2024-11-04 20:49:04,861 INFO: recall: 0.9496
+2024-11-04 20:49:04,861 INFO: f1: 0.9485
+2024-11-04 20:49:04,861 INFO: specificity: 0.9375
+2024-11-04 20:49:04,861 INFO: Extracting embeddings for severity visualization...
+2024-11-04 20:49:11,034 INFO: Generated embeddings shape: (396, 512)
+2024-11-04 20:49:11,047 INFO: Reduced embeddings to 50 components using PCA.
+2024-11-04 20:49:11,047 INFO: Performing t-SNE dimensionality reduction.
+2024-11-04 20:49:14,322 INFO: Embeddings visualization (tsne) saved as models/tsne_severity.png
+2024-11-04 20:49:14,322 INFO: Performing UMAP dimensionality reduction.
+/home/lornamugambik/anaconda3/envs/venv/lib/python3.12/site-packages/umap/umap_.py:1945: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(f"n_jobs value {self.n_jobs} overridden to 1 by setting random_state. Use no seed for parallelism.")
+2024-11-04 20:49:16,440 INFO: Embeddings visualization (umap) saved as models/umap_severity.png
+2024-11-04 20:49:16,440 INFO: All tasks completed successfully.

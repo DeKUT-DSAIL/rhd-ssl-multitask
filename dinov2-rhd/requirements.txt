@@ -1,0 +1,11 @@
+torch
+torchvision
+google-cloud-storage 
+pandas 
+pillow
+numpy 
+matplotlib 
+seaborn 
+scikit-lean
+umap-learn 
+tqdm

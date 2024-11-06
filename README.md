@@ -19,21 +19,17 @@ The architecture includes linear classifiers tailored for specific tasks such as
 - Disease severity assessment
 
 The dataset comprises annotated echocardiogram frames with three types of labels—view, condition, and severity—as well as additional unlabeled frames used for self-supervised pre-training.
+![alt text](dinov2-rhd/outputs/run_20241105_162913/.ipynb_checkpoints/initial_samples-checkpoint.png)
 
 ## Installation
 
-1. Clone the repository:
-    ```sh
+Clone the repository:
+    ```
     git clone https://github.com/lmugambi/rhd-ssl-multitask.git
     cd rhd-ssl-multitask
     ```
 
-2. Install the required dependencies:
-    ```sh
-    pip install -r requirements.txt
-    ```
 
-## Usage
 
 
 
@@ -42,3 +38,5 @@ The project includes visualization tools to analyze the training process and the
 
 - t-SNE and UMAP visualizations of embeddings
 - Confusion matrices for classification tasks
+
+

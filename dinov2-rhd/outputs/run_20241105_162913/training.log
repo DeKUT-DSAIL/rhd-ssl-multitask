@@ -1,0 +1,97 @@
+2024-11-05 16:29:14,195 - INFO - Using device: cuda
+2024-11-05 16:29:14,227 - INFO - Number of GPUs: 2
+2024-11-05 16:29:14,228 - INFO - Creating datasets...
+2024-11-05 16:29:14,744 - INFO - Total files in bucket prefix 'supervised/annotated-final': 2640
+2024-11-05 16:29:14,744 - INFO - Number of labeled samples: 2655
+2024-11-05 16:29:14,744 - INFO - 
+VIEW label distribution:
+2024-11-05 16:29:14,745 - INFO - Apical Four Chamber(A4C): 483 samples
+2024-11-05 16:29:14,745 - INFO - Parasternal long axis (PLAX): 724 samples
+2024-11-05 16:29:14,746 - INFO - Parasternal short axis(PSAX): 1448 samples
+2024-11-05 16:29:14,746 - INFO - 
+CONDITION label distribution:
+2024-11-05 16:29:14,747 - INFO - ['Aortic Valve Regurgitation', 'Pulmonary Valve Regurgitation']: 121 samples
+2024-11-05 16:29:14,747 - INFO - ['Aortic Valve Regurgitation']: 121 samples
+2024-11-05 16:29:14,748 - INFO - ['Mitral Valve Prolapse']: 241 samples
+2024-11-05 16:29:14,749 - INFO - ['Mitral Valve Regurgitation']: 121 samples
+2024-11-05 16:29:14,749 - INFO - ['Not Applicable']: 1809 samples
+2024-11-05 16:29:14,750 - INFO - ['Pulmonary Valve Regurgitation']: 121 samples
+2024-11-05 16:29:14,751 - INFO - ['Tricuspid Valve Regurgitation']: 121 samples
+2024-11-05 16:29:14,751 - INFO - 
+SEVERITY label distribution:
+2024-11-05 16:29:14,752 - INFO - Borderline rhd: 242 samples
+2024-11-05 16:29:14,752 - INFO - Definite rhd: 241 samples
+2024-11-05 16:29:14,753 - INFO - Not Applicable: 2172 samples
+2024-11-05 16:29:17,506 - INFO - Total files in bucket prefix 'unsupervised-videos/unlabelled-frames': 38037
+2024-11-05 16:29:17,506 - INFO - Number of labeled samples: 2655
+2024-11-05 16:29:17,506 - INFO - 
+VIEW label distribution:
+2024-11-05 16:29:17,507 - INFO - Apical Four Chamber(A4C): 483 samples
+2024-11-05 16:29:17,507 - INFO - Parasternal long axis (PLAX): 724 samples
+2024-11-05 16:29:17,508 - INFO - Parasternal short axis(PSAX): 1448 samples
+2024-11-05 16:29:17,508 - INFO - 
+CONDITION label distribution:
+2024-11-05 16:29:17,509 - INFO - ['Aortic Valve Regurgitation', 'Pulmonary Valve Regurgitation']: 121 samples
+2024-11-05 16:29:17,509 - INFO - ['Aortic Valve Regurgitation']: 121 samples
+2024-11-05 16:29:17,510 - INFO - ['Mitral Valve Prolapse']: 241 samples
+2024-11-05 16:29:17,511 - INFO - ['Mitral Valve Regurgitation']: 121 samples
+2024-11-05 16:29:17,512 - INFO - ['Not Applicable']: 1809 samples
+2024-11-05 16:29:17,512 - INFO - ['Pulmonary Valve Regurgitation']: 121 samples
+2024-11-05 16:29:17,513 - INFO - ['Tricuspid Valve Regurgitation']: 121 samples
+2024-11-05 16:29:17,513 - INFO - 
+SEVERITY label distribution:
+2024-11-05 16:29:17,514 - INFO - Borderline rhd: 242 samples
+2024-11-05 16:29:17,514 - INFO - Definite rhd: 241 samples
+2024-11-05 16:29:17,515 - INFO - Not Applicable: 2172 samples
+2024-11-05 16:29:17,515 - INFO - Number of classes: {'view': 3, 'condition': 7, 'severity': 3}
+2024-11-05 16:29:17,516 - INFO - Dataset split: 1847 train, 396 val, 397 test
+2024-11-05 16:29:17,516 - INFO - DataLoaders created.
+2024-11-05 16:29:18,197 - INFO - using MLP layer as FFN
+2024-11-05 16:29:18,955 - INFO - Using 2 GPUs!
+2024-11-05 16:29:18,955 - INFO - 
+Label Decoders:
+2024-11-05 16:29:18,955 - INFO - 
+VIEW:
+2024-11-05 16:29:18,955 - INFO - 0: Apical Four Chamber(A4C)
+2024-11-05 16:29:18,955 - INFO - 1: Parasternal long axis (PLAX)
+2024-11-05 16:29:18,955 - INFO - 2: Parasternal short axis(PSAX)
+2024-11-05 16:29:18,955 - INFO - 
+CONDITION:
+2024-11-05 16:29:18,955 - INFO - 0: ['Aortic Valve Regurgitation', 'Pulmonary Valve Regurgitation']
+2024-11-05 16:29:18,955 - INFO - 1: ['Aortic Valve Regurgitation']
+2024-11-05 16:29:18,955 - INFO - 2: ['Mitral Valve Prolapse']
+2024-11-05 16:29:18,956 - INFO - 3: ['Mitral Valve Regurgitation']
+2024-11-05 16:29:18,956 - INFO - 4: ['Not Applicable']
+2024-11-05 16:29:18,956 - INFO - 5: ['Pulmonary Valve Regurgitation']
+2024-11-05 16:29:18,956 - INFO - 6: ['Tricuspid Valve Regurgitation']
+2024-11-05 16:29:18,956 - INFO - 
+SEVERITY:
+2024-11-05 16:29:18,956 - INFO - 0: Borderline rhd
+2024-11-05 16:29:18,956 - INFO - 1: Definite rhd
+2024-11-05 16:29:18,956 - INFO - 2: Not Applicable
+2024-11-05 16:29:25,556 - INFO - Initialized dinov2_vits14 model
+2024-11-05 16:29:25,557 - INFO - Starting training...
+2024-11-05 16:52:46,895 - INFO - 
+Test Metrics:
+2024-11-05 16:52:46,895 - INFO - 
+VIEW:
+2024-11-05 16:52:46,895 - INFO - accuracy: 1.0000
+2024-11-05 16:52:46,895 - INFO - precision: 1.0000
+2024-11-05 16:52:46,895 - INFO - recall: 1.0000
+2024-11-05 16:52:46,895 - INFO - specificity: 1.0000
+2024-11-05 16:52:46,895 - INFO - f1: 1.0000
+2024-11-05 16:52:46,895 - INFO - 
+CONDITION:
+2024-11-05 16:52:46,895 - INFO - accuracy: 1.0000
+2024-11-05 16:52:46,895 - INFO - precision: 1.0000
+2024-11-05 16:52:46,895 - INFO - recall: 1.0000
+2024-11-05 16:52:46,895 - INFO - specificity: 1.0000
+2024-11-05 16:52:46,895 - INFO - f1: 1.0000
+2024-11-05 16:52:46,895 - INFO - 
+SEVERITY:
+2024-11-05 16:52:46,895 - INFO - accuracy: 1.0000
+2024-11-05 16:52:46,895 - INFO - precision: 1.0000
+2024-11-05 16:52:46,895 - INFO - recall: 1.0000
+2024-11-05 16:52:46,895 - INFO - specificity: 1.0000
+2024-11-05 16:52:46,895 - INFO - f1: 1.0000
+2024-11-05 16:52:46,896 - INFO - Training completed. Results saved in: outputs/run_20241105_162913
