@@ -5,15 +5,16 @@ import argparse
 import numpy as np
 from PIL import Image, ImageDraw
 import torch
+import torch.nn as nn
 from torch.utils.data import DataLoader, random_split
 from torchvision import transforms
 from torchvision.transforms import functional as F
 from torch.amp import GradScaler, autocast
 from dataset import GCPBucketDataset
 from utils import set_seed
-from visualize import visualize_samples
+from visualize import visualize_samples, visualize_test_samples
 from model import DINOv2MultiTask
-from train import train_model
+from train import train_model, plot_training_curves, evaluate_model
 import json
 from datetime import datetime
 
@@ -213,6 +214,9 @@ def main():
     
     logging.info(f"Initialized {args.model_name} model")
     
+    # Define the criterion (loss function)
+    criterion = nn.CrossEntropyLoss()  # Define the loss function here
+    
     # Train the model
     logging.info("Starting training...")
     
@@ -229,6 +233,9 @@ def main():
         save_dir=output_dir
     )
 
+    # Save the training curves
+    plot_training_curves(history, output_dir)
+
     logging.info("\nTest Metrics:")
     for task in ['view', 'condition', 'severity']:
         logging.info(f"\n{task.upper()}:")
@@ -238,6 +245,25 @@ def main():
     # Save test metrics
     with open(os.path.join(output_dir, 'test_metrics.json'), 'w') as f:
         json.dump(test_metrics, f, indent=4)
+
+    # Visualize test samples
+    test_images, actual_labels, predicted_labels, test_metrics, test_embeddings = evaluate_model(
+        model=model,
+        test_loader=test_dataloader,
+        criterion=criterion,
+        device=device,
+        save_dir=output_dir
+    )
+    
+    # Visualize test samples
+    visualize_test_samples(
+        images=test_images, 
+        actual_labels=actual_labels, 
+        predicted_labels=predicted_labels, 
+        label_decoders=label_decoders, 
+        num_samples=5,  # Adjust the number of samples to visualize
+        save_path=os.path.join(output_dir, 'test_samples_visualization.png')
+    )
 
     logging.info("Training completed. Results saved in: " + output_dir)
 

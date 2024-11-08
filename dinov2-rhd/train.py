@@ -9,6 +9,8 @@ from tqdm import tqdm
 import logging
 import matplotlib.pyplot as plt
 from metrics import calculate_metrics, plot_confusion_matrix, visualize_embeddings
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 
 
 class EarlyStopping:
@@ -33,47 +35,18 @@ class EarlyStopping:
         else:
             self.best_loss = val_loss
             self.counter = 0
-            
-
-def plot_training_curves(history, save_dir):
-    """Plot and save training curves"""
-    # Plot loss curves
-    plt.figure(figsize=(10, 6))
-    plt.plot(history['train_loss'], label='Train Loss')
-    plt.plot(history['val_loss'], label='Validation Loss')
-    plt.title('Training and Validation Loss')
-    plt.xlabel('Epoch')
-    plt.ylabel('Loss')
-    plt.legend()
-    plt.savefig(os.path.join(save_dir, 'loss_curves.png'))
-    plt.close()
-
-    # Plot metrics for each task
-    tasks = ['view', 'condition', 'severity']
-    metrics = ['accuracy', 'precision', 'recall', 'f1', 'specificity']
-    
-    for task in tasks:
-        plt.figure(figsize=(12, 8))
-        for metric in metrics:
-            train_metric = [m[metric] for m in history['train_metrics'][task]]
-            val_metric = [m[metric] for m in history['val_metrics'][task]]
-            plt.plot(train_metric, label=f'Train {metric}')
-            plt.plot(val_metric, label=f'Val {metric}')
-        plt.title(f'{task.capitalize()} Metrics')
-        plt.xlabel('Epoch')
-        plt.ylabel('Score')
-        plt.legend()
-        plt.savefig(os.path.join(save_dir, f'{task}_metrics.png'))
-        plt.close()
       
 
 
-def evaluate_model(model, test_loader, criterion, device, save_dir):
+def evaluate_model(model, test_loader, criterion, device, save_dir, num_samples=5):
     model.eval()
     test_loss = 0
     test_preds = {task: [] for task in ['view', 'condition', 'severity']}
     test_labels = {task: [] for task in ['view', 'condition', 'severity']}
     test_embeddings = []
+    test_images = []  # To store images for visualization
+    actual_labels = []  # To store actual labels for visualization
+    predicted_labels = []  # To store predicted labels for visualization
 
     with torch.no_grad():
         for images, labels in tqdm(test_loader, desc="Evaluating on test set"):
@@ -97,7 +70,18 @@ def evaluate_model(model, test_loader, criterion, device, save_dir):
                 test_preds[task].extend(preds.cpu().numpy())
                 test_labels[task].extend(task_labels.cpu().numpy())
 
+
+            # Store images and labels for visualization
+            if len(test_images) < num_samples:
+                test_images.extend(images.cpu().numpy())  # Store the images
+                actual_labels.extend(labels)  # Store the actual labels
+                predicted_labels.extend(outputs['view'].argmax(dim=1).cpu().numpy())  # Store predicted labels
+
     test_embeddings = torch.cat(test_embeddings, dim=0).numpy()
+    # Convert lists to numpy arrays for easier handling
+    test_images = np.array(test_images)
+    actual_labels = np.array(actual_labels)
+    predicted_labels = np.array(predicted_labels)
 
     # Calculate metrics and plot confusion matrices
     test_metrics = {}
@@ -166,7 +150,26 @@ def evaluate_model(model, test_loader, criterion, device, save_dir):
                     save_path=os.path.join(save_dir, f'test_embeddings_{task}_{method}.png')
                 )
 
-    return test_metrics, test_embeddings
+    return test_images, actual_labels, predicted_labels, test_metrics, test_embeddings
+
+def calculate_silhouette_scores(embeddings, num_clusters):
+    """Calculate silhouette scores for each task."""
+    silhouette_scores = {}
+    
+    for task, (embeddings_task, n_clusters) in zip(['view', 'condition', 'severity'], zip(embeddings, num_clusters)):
+        # Perform K-Means clustering
+        kmeans = KMeans(n_clusters=n_clusters, random_state=42)
+        cluster_labels = kmeans.fit_predict(embeddings_task)
+
+        # Calculate the silhouette score
+        silhouette_avg = silhouette_score(embeddings_task, cluster_labels)
+        silhouette_scores[task] = silhouette_avg
+        print(f'Silhouette Score for {task.capitalize()}: {silhouette_avg:.4f}')
+        
+        # Log the silhouette score
+        logging.info(f'Silhouette Score for {task.capitalize()}: {silhouette_avg:.4f}')
+    
+    return silhouette_scores
     
 def train_model(
     model,
@@ -220,6 +223,14 @@ def train_model(
     
     unlabelled_embeddings = torch.cat(unlabelled_embeddings, dim=0)
 
+
+    # Calculate silhouette scores for the unlabeled embeddings
+    num_clusters = [3, 7, 3]  # Adjust the number of clusters for each task as needed
+    silhouette_scores = calculate_silhouette_scores(
+        [unlabelled_embeddings.numpy() for _ in range(3)],  # Use the same embeddings for all tasks
+        num_clusters
+    )
+    
     # Get label decoders from model
     if isinstance(model, torch.nn.DataParallel):
         label_decoders = model.module.get_label_decoders()
@@ -341,7 +352,7 @@ def train_model(
 
     # Evaluate on test set
     print("\nEvaluating model on test set...")
-    test_metrics, test_embeddings = evaluate_model(
+    test_images, actual_labels, predicted_labels, test_metrics, test_embeddings = evaluate_model(
         model=model,
         test_loader=test_loader,
         criterion=criterion,
@@ -355,4 +366,34 @@ def train_model(
 
     return history, test_metrics
 
+def plot_training_curves(history, save_dir):
+    """Plot and save training curves"""
+    # Plot loss curves
+    plt.figure(figsize=(10, 6))
+    plt.plot(history['train_loss'], label='Train Loss')
+    plt.plot(history['val_loss'], label='Validation Loss')
+    plt.title('Training and Validation Loss')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.legend()
+    plt.savefig(os.path.join(save_dir, 'loss_curves.png'))
+    plt.close()
 
+    # Plot metrics for each task
+    tasks = ['view', 'condition', 'severity']
+    metrics = ['accuracy', 'precision', 'recall', 'f1', 'specificity']
+    
+    for task in tasks:
+        plt.figure(figsize=(12, 8))
+        for metric in metrics:
+            train_metric = [m[metric] for m in history['train_metrics'][task]]
+            val_metric = [m[metric] for m in history['val_metrics'][task]]
+            plt.plot(train_metric, label=f'Train {metric}')
+            plt.plot(val_metric, label=f'Val {metric}')
+        plt.title(f'{task.capitalize()} Metrics')
+        plt.xlabel('Epoch')
+        plt.ylabel('Score')
+        plt.legend()
+        plt.savefig(os.path.join(save_dir, f'{task}_metrics.png'))
+        plt.close()
+    return history, save_dir
