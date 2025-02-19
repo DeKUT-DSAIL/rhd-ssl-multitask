@@ -39,17 +39,17 @@ class GCPBucketDataset(Dataset):
                 'Parasternal short axis(PSAX)': 2
             },
             'condition': {
-                "['Aortic Valve Regurgitation', 'Pulmonary Valve Regurgitation']": 0,
-                "['Aortic Valve Regurgitation']": 1,
-                "['Mitral Valve Prolapse']": 2,
-                "['Mitral Valve Regurgitation']": 3,
-                "['Not Applicable']": 4,
-                "['Pulmonary Valve Regurgitation']": 5,
-                "['Tricuspid Valve Regurgitation']": 6
+                'Aortic Valve Regurgitation and Pulmonary Valve Regurgitation': 0,
+                'Aortic Valve Regurgitation': 1,
+                'Mitral Valve Prolapse': 2,
+                'Mitral Valve Regurgitation': 3,
+                'Not Applicable': 4,
+                'Pulmonary Valve Regurgitation': 5,
+                'Tricuspid Valve Regurgitation': 6
             },
             'severity': {
-                'Borderline rhd': 0,
-                'Definite rhd': 1,
+                'Borderline RHD': 0,
+                'Definite RHD': 1,
                 'Not Applicable': 2
             }
         }
@@ -63,8 +63,14 @@ class GCPBucketDataset(Dataset):
         # Read and process labels if csv_file is provided
         if csv_file:
             self.labels_df = self._read_csv(csv_file)
+            # Capitalize 'rhd' in severity column
+            self.labels_df['SEVERITY'] = self.labels_df['SEVERITY'].str.replace('rhd', 'RHD', case=False)
             # Print column names for debugging
             print("Available columns in CSV:", self.labels_df.columns.tolist())
+            
+            # Clean up condition labels
+            if 'CONDITION' in self.labels_df.columns:
+                self.labels_df['CONDITION'] = self.labels_df['CONDITION'].astype(str).str.strip("[]").str.replace("'", "")
             
             self._create_label_encodings()
             self.labels = self._create_labels_dict()
@@ -81,36 +87,21 @@ class GCPBucketDataset(Dataset):
 
     def _create_label_encodings(self):
         """Create numerical encodings for each label category."""
-        # Create encodings for view labels
-        unique_views = sorted(self.labels_df['VIEW-APP'].unique())
-        for idx, view in enumerate(unique_views):
-            self.label_encoders['view'][view] = idx
-            self.label_decoders['view'][idx] = view
+        for task in ['view', 'condition', 'severity']:
+            # Use the correct column name based on the task
+            col_name = task.upper() + '-APP' if task == 'view' else task.upper()  # Correct column name
+            unique_labels = sorted(self.labels_df[col_name].unique())
+            print(f"Unique {task} Labels from CSV ({col_name}):", unique_labels)  # Print with column name for debugging
+
+            for idx, label in enumerate(unique_labels):
+                self.label_encoders[task][label] = idx
+                self.label_decoders[task][idx] = label
+                
+        print("\nLabel Encoders:")  # Print the entire encoders
+        print(self.label_encoders)
+        print("\nLabel Decoders:") # Print the entire decoders
+        print(self.label_decoders)
         
-        # Create encodings for condition labels
-        unique_conditions = sorted(self.labels_df['CONDITION'].unique())
-        for idx, condition in enumerate(unique_conditions):
-            self.label_encoders['condition'][condition] = idx
-            self.label_decoders['condition'][idx] = condition
-        
-        # Create encodings for severity labels
-        unique_severities = sorted(self.labels_df['SEVERITY'].unique())
-        for idx, severity in enumerate(unique_severities):
-            self.label_encoders['severity'][severity] = idx
-            self.label_decoders['severity'][idx] = severity
-
-        # Print the number of unique classes
-        print("\nNumber of unique classes:")
-        print(f"View: {len(unique_views)}")
-        print(f"Condition: {len(unique_conditions)}")
-        print(f"Severity: {len(unique_severities)}")
-
-        # Print the actual unique values
-        print("\nUnique values for each label type:")
-        print(f"View labels: {unique_views}")
-        print(f"Condition labels: {unique_conditions}")
-        print(f"Severity labels: {unique_severities}")
-
     def _create_labels_dict(self):
         """Create a dictionary mapping filenames to their labels."""
         labels_dict = {}
@@ -147,11 +138,22 @@ class GCPBucketDataset(Dataset):
         if self.transform:
             image = self.transform(image)
 
-        # Return labels if available, else dummy labels
-        return image, self.labels.get(filename, (-1, -1, -1))
+        # Extract video ID from filename
+        video_id = self._extract_video_id(filename)
 
-    def __len__(self):
-        return len(self.file_paths)
+        # Return labels if available, else dummy labels
+        return image, self.labels.get(filename, (-1, -1, -1)), video_id
+
+
+    def _extract_video_id(self, filename):
+        """Helper to extract video ID from filename."""
+        try:
+            video_id = filename.split("_frame")[0]  # Extract video ID from frame filename
+            return video_id
+        except (IndexError, AttributeError):
+            logging.error(f"Could not extract video ID from filename: {filename}")
+            return None  # Return None or a suitable placeholder on error
+
 
     def get_num_classes(self):
         """Return dictionary with number of classes for each task"""

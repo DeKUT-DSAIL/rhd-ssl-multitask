@@ -49,22 +49,21 @@ class DINOv2MultiTask(nn.Module):
                 2: 'Parasternal short axis(PSAX)'
             },
             'condition': {
-                0: ['Aortic Valve Regurgitation', 'Pulmonary Valve Regurgitation'],
-                1: ['Aortic Valve Regurgitation'],
-                2: ['Mitral Valve Prolapse'],
-                3: ['Mitral Valve Regurgitation'],
-                4: ['Not Applicable'],
-                5: ['Pulmonary Valve Regurgitation'],
-                6: ['Tricuspid Valve Regurgitation']
+                0: 'Aortic Valve Regurgitation and Pulmonary Valve Regurgitation',
+                1: 'Aortic Valve Regurgitation',
+                2: 'Mitral Valve Prolapse',
+                3: 'Mitral Valve Regurgitation',
+                4: 'Not Applicable',
+                5: 'Pulmonary Valve Regurgitation',
+                6: 'Tricuspid Valve Regurgitation'
             },
             'severity': {
-                0: 'Borderline rhd',
-                1: 'Definite rhd',
+                0: 'Borderline RHD',
+                1: 'Definite RHD',
                 2: 'Not Applicable'
             }
         }
-        
-    
+            
     
     def get_embeddings(self, x):
         with torch.no_grad():

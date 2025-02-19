@@ -35,8 +35,8 @@ python main.py \
 --labelled-prefix path/to/labelled/data \
 --unlabelled-prefix path/to/unlabelled/data \
 --csv-file path/to/labels.csv \
---batch-size 32 \
---epochs 100 \
+--batch-size 256 \
+--epochs 500 \
 --learning-rate 1e-4 \
 --patience 7
 
@@ -82,19 +82,19 @@ The model outputs:
    - Specificity
    - F1 Score
 
-| Task       | Accuracy | Precision | Recall | Specificity | F1 Score |
-|------------|----------|-----------|--------|-------------|----------|
-| **View**      | 1.0000   | 1.0000    | 1.0000 | 1.0000      | 1.0000   |
-| **Condition** | 1.0000   | 1.0000    | 1.0000 | 1.0000      | 1.0000   |
-| **Severity**  | 1.0000   | 1.0000    | 1.0000 | 1.0000      | 1.0000   |
+| Task       | Accuracy | Precision | Recall | F1 Score |
+|------------|----------|-----------|--------|----------|
+| **View**      | 0.92   | 0.90     | 0.89   | 0.92     |
+| **Condition** | 0.93   | 0.94     | 0.93   | 0.93     |
+| **Severity**  | 0.97   | 0.97     | 0.97   | 0.97     |
 
 2. Visualizations:
    - Confusion matrices with actual label names
-![alt text](outputs/run_20241105_162913/view_confusion_matrix.png)![alt text](outputs/run_20241105_162913/condition_confusion_matrix.png)![alt text](outputs/run_20241105_162913/severity_confusion_matrix.png)
+![alt text](outputs/run_20250121/view_confusion_matrix.png)![alt text](outputs/run_20250121/condition_confusion_matrix.png)![alt text](outputs/run_20250121/severity_confusion_matrix.png)
 
    - UMAP and t-SNE embeddings with class legends
    
-![alt text](outputs/run_20241105_162913/test_embeddings_view_umap.png)![alt text](outputs/run_20241105_162913/test_embeddings_condition_umap.png)![alt text](outputs/run_20241105_162913/test_embeddings_severity_umap.png)
+![alt text](outputs/run_20250121/UMAP%20visualization%20of%20DINOv2%20Embeddings%20for%20view%20classification.png)![alt text](outputs/run_20250121/UMAP%20visualization%20of%20DINOv2%20Embeddings%20for%20condition%20classification.png)![alt text](outputs/run_20250121/UMAP%20visualization%20of%20DINOv2%20Embeddings%20for%20severity%20classification.png)
    
    - Training and validation curves
 
@@ -105,8 +105,8 @@ nohup python main.py \
     --labelled-prefix echocardiograms/labeled \
     --unlabelled-prefix echocardiograms/unlabeled \
     --csv-file metadata/labels.csv \
-    --batch-size 32 \
-    --epochs 100 \
+    --batch-size 256 \
+    --epochs 500 \
     --learning-rate 1e-4 \
     --patience 7 > dino_rhd.txt 2>&1 &
 ```

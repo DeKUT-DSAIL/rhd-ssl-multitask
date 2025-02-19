@@ -6,13 +6,15 @@ import numpy as np
 from PIL import Image, ImageDraw
 import torch
 import torch.nn as nn
+import torch.optim as optim
 from torch.utils.data import DataLoader, random_split
 from torchvision import transforms
 from torchvision.transforms import functional as F
 from torch.amp import GradScaler, autocast
 from dataset import GCPBucketDataset
 from utils import set_seed
-from visualize import visualize_samples, visualize_test_samples
+from visualize import visualize_samples, visualize_test_samples, visualize_two_videos
+from metrics import calculate_metrics, plot_confusion_matrix, visualize_embeddings
 from model import DINOv2MultiTask
 from train import train_model, plot_training_curves, evaluate_model
 import json
@@ -34,12 +36,14 @@ def main():
     parser = argparse.ArgumentParser(description='Script for training and evaluating a model.')
     parser.add_argument('--batch_size', type=int, default=32, help='Batch size for training and evaluation')
     parser.add_argument('--num_workers', type=int, default=8, help='Number of workers for data loading')
-    parser.add_argument('--seed', type=int, default=42, help='Random seed for reproducibility')
+    parser.add_argument('--seed', type=int, default=123, help='Random seed for reproducibility')
     parser.add_argument('--epochs', type=int, default=100, help='Number of training epochs')
     parser.add_argument('--learning_rate', type=float, default=1e-4, help='Learning rate for the optimizer')
+    parser.add_argument('--pretrain_epochs', type=int, default=100, help='Number of pretrain epochs')
     parser.add_argument('--patience', type=int, default=7, help='Patience for early stopping')
     parser.add_argument('--model_name', type=str, default='dinov2_vits14', help='DINOv2 model variant')
     parser.add_argument('--freeze_backbone', type=bool, default=True, help='Whether to freeze backbone')
+    
     args = parser.parse_args()
 
     # Create output directory with timestamp
@@ -47,7 +51,7 @@ def main():
     output_dir = os.path.join('outputs', f'run_{timestamp}')
     os.makedirs(output_dir, exist_ok=True)
     
-
+    
     # Save configuration
     config = vars(args)
     with open(os.path.join(output_dir, 'config.json'), 'w') as f:
@@ -104,7 +108,7 @@ def main():
     data_transforms = transforms.Compose([
         CustomPad(x_min=40, y_min=60, x_max=550, y_max=400, pad_value=0),
         transforms.Resize((224, 224)),  # DINOv2 expected input size
-        transforms.RandomHorizontalFlip(),
+        #transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
     ])
@@ -162,7 +166,7 @@ def main():
     test_dataloader = DataLoader(
         test_dataset,
         batch_size=args.batch_size,
-        shuffle=False,
+        shuffle=True,
         num_workers=args.num_workers,
         pin_memory=True
     )
@@ -182,10 +186,7 @@ def main():
         model_name=args.model_name,
         num_classes=num_classes,
         freeze_backbone=args.freeze_backbone
-    )
-    
-    # Move model to device first
-    model = model.to(device)
+    ).to(device)
     
     # Wrap with DataParallel if multiple GPUs available
     if torch.cuda.device_count() > 1:
@@ -209,13 +210,19 @@ def main():
         train_dataloader, 
         num_samples=5, 
         label_decoders=label_decoders,  # Pass the decoders here
-        save_path=os.path.join(output_dir, 'initial_samples.png')
+        save_path=os.path.join(output_dir, 'initial_samples')
     )
     
     logging.info(f"Initialized {args.model_name} model")
+
+
+    optimizer = optim.AdamW([
+        {'params': model.module.heads.parameters() if isinstance(model, nn.DataParallel) else model.heads.parameters(), 'lr': args.learning_rate},
+        {'params': model.module.backbone.parameters() if isinstance(model, nn.DataParallel) else model.backbone.parameters(), 'lr': args.learning_rate * 0.1}
+    ])
     
     # Define the criterion (loss function)
-    criterion = nn.CrossEntropyLoss()  # Define the loss function here
+    criterion = nn.CrossEntropyLoss().to(device)
     
     # Train the model
     logging.info("Starting training...")
@@ -230,6 +237,10 @@ def main():
         num_epochs=args.epochs,
         patience=args.patience,
         learning_rate=args.learning_rate,
+        optimizer=optimizer,  
+        criterion=criterion, 
+        pretrain_epochs=args.pretrain_epochs, 
+        pretrain_lr=1e-4, 
         save_dir=output_dir
     )
 
@@ -247,7 +258,7 @@ def main():
         json.dump(test_metrics, f, indent=4)
 
     # Visualize test samples
-    test_images, actual_labels, predicted_labels, test_metrics, test_embeddings = evaluate_model(
+    test_images, actual_labels, predicted_labels, test_metrics, test_embeddings, video_ids = evaluate_model(
         model=model,
         test_loader=test_dataloader,
         criterion=criterion,
@@ -261,9 +272,13 @@ def main():
         actual_labels=actual_labels, 
         predicted_labels=predicted_labels, 
         label_decoders=label_decoders, 
-        num_samples=5,  # Adjust the number of samples to visualize
-        save_path=os.path.join(output_dir, 'test_samples_visualization.png')
+        num_samples=3,  # Adjust the number of samples to visualize
+        save_path=os.path.join(output_dir, 'test_samples_visualization'),
+        project_title="Echocardiographic Image Classification"
     )
+
+    # Visualize embeddings of two randomly selected videos
+    visualize_two_videos(test_embeddings, video_ids, method='umap', save_path=os.path.join(output_dir, 'two_videos'))
 
     logging.info("Training completed. Results saved in: " + output_dir)
 
