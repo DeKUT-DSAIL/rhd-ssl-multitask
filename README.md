@@ -19,7 +19,7 @@ The architecture includes linear classifiers tailored for specific tasks such as
 - Disease severity assessment
 
 The dataset comprises annotated echocardiogram frames with three types of labels—view, condition, and severity—as well as additional unlabeled frames used for self-supervised pre-training.
-![alt text](dinov2-rhd/outputs/run_20241105_162913/initial_samples.png)
+![alt text](dinov2-rhd/outputs/run_20250121/initial_samples.png)
 
 ## Installation
 
